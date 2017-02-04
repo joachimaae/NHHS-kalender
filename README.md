@@ -1,1 +1,1 @@
-"# NHHS Kalender" 
+En HTML/CSS/JS kalender som oppdateres fra en Google Kalender
