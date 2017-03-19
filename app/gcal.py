@@ -79,3 +79,46 @@ def list_events():
             print(event['description'])
         except:
             pass
+
+def hent_events():
+    """ Henter arrangementer og lagrer de i en dictionary "eventer"
+    -> dict of list of str
+
+    eventer har  som verdi en liste med arrangementets starttidspunkt, tittel og evt. beskrivelse.
+    """
+    credentials = get_credentials()
+    http = credentials.authorize(httplib2.Http())
+    service = discovery.build('calendar', 'v3', http=http)
+
+    now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+    eventsResult = service.events().list(
+        calendarId='v612u1rohvpfau1fkgthola1dk@group.calendar.google.com',
+        timeMin=now, maxResults=50, singleEvents=True,
+        orderBy='startTime').execute()
+    events = eventsResult.get('items', [])
+ 
+    eventer = {}
+
+    for event in events:
+        start = event['start'].get('dateTime', event['start'].get('date'))
+
+        if event['id'] in eventer:
+            eventer[event].append([start, event['summary']])
+            try:
+                eventer.append(event['description'])
+            except:
+                pass
+        else:
+            eventer[event['id']] = [start, event['summary']]
+            try:
+                eventer.append(event['description'])
+            except:
+                pass
+
+    return eventer
+
+if __name__ == "__main__":
+    """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
+    """
+    hent_events()
+    print(hent_events())
