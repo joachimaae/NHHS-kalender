@@ -1,9 +1,11 @@
 from flask import render_template
 from app import app
+from app import gcal
 
+events = gcal.hent_events()
 
 @app.route('/index')
-
+@app.route('/')
 def index():
     fakeTittel = {'tittel1': 'Fotball', 'tittel2': 'Håndball'}
     fakeStartTid = {'startTid1': '08:30','startTid2': '09:30'}
@@ -25,3 +27,11 @@ def index():
                            startTid=startTid,
                            sluttTid=sluttTid,
                            id=id)
+
+@app.route('/liste')
+def liste():
+    """ Lister opp events
+    """
+    return render_template("liste.html",
+                           tittel=events)
+
