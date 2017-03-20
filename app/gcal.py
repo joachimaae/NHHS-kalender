@@ -96,7 +96,6 @@ def hent_events():
         timeMin=now, maxResults=50, singleEvents=True,
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
-    print(events)
  
     eventer = {}
 
