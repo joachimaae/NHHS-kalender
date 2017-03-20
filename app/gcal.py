@@ -96,6 +96,7 @@ def hent_events():
         timeMin=now, maxResults=50, singleEvents=True,
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
+    print(events)
  
     eventer = {}
 
@@ -105,13 +106,13 @@ def hent_events():
         if event['id'] in eventer:
             eventer[event].append([start, event['summary']])
             try:
-                eventer.append(event['description'])
+                eventer[event['id']].append(event['description'])
             except:
                 pass
         else:
             eventer[event['id']] = [start, event['summary']]
             try:
-                eventer.append(event['description'])
+                eventer[event['id']].append(event['description'])
             except:
                 pass
 
@@ -120,5 +121,4 @@ def hent_events():
 if __name__ == "__main__":
     """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
     """
-    hent_events()
     print(hent_events())
