@@ -117,6 +117,10 @@ def hent_events():
 
     return eventer
 
+
+
+
+
 if __name__ == "__main__":
     """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
     """
