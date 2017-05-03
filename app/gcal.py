@@ -101,15 +101,16 @@ def hent_events():
 
     for event in events:
         start = event['start'].get('dateTime', event['start'].get('date'))
+        slutt = event['end'].get('dateTime')
 
         if event['id'] in eventer:
-            eventer[event].append([start, event['summary']])
+            eventer[event].append([start, slutt, event['summary']])
             try:
                 eventer[event['id']].append(event['description'])
             except:
                 pass
         else:
-            eventer[event['id']] = [start, event['summary']]
+            eventer[event['id']] = [start, slutt, event['summary']]
             try:
                 eventer[event['id']].append(event['description'])
             except:
@@ -118,7 +119,6 @@ def hent_events():
     return eventer
 
 
-"""Marcus checking in"""
 
 
 if __name__ == "__main__":

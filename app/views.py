@@ -2,11 +2,26 @@ from flask import render_template
 from app import app
 from app import gcal
 
-events = gcal.hent_events()
+
 
 @app.route('/index')
 @app.route('/')
 def index():
+    events = gcal.hent_events()
+    return render_template("index.html", eventer=events)
+
+@app.route('/liste')
+def liste():
+    """ Lister opp events
+    """
+    
+    events = gcal.hent_events()
+    return render_template("liste.html",
+                           eventer=events)
+
+
+"""
+eksempel på flask:
     fakeTittel = {'tittel1': 'Fotball', 'tittel2': 'Håndball'}
     fakeStartTid = {'startTid1': '08:30','startTid2': '09:30'}
     fakeSluttTid = {'sluttTid1': '08:30','sluttTid2': '09:30'}
@@ -21,17 +36,4 @@ def index():
         startTid.update(fakeStartTid[x])
         sluttTid.update(fakeSluttTid[x])
         id.update(fakeId[x])
-
-    return render_template("index.html",
-                           tittel=tittel,
-                           startTid=startTid,
-                           sluttTid=sluttTid,
-                           id=id)
-
-@app.route('/liste')
-def liste():
-    """ Lister opp events
-    """
-    return render_template("liste.html",
-                           tittel=events)
-
+"""
