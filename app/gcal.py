@@ -80,6 +80,7 @@ def list_events():
         except:
             pass
 
+
 def hent_events():
     """ Henter arrangementer og lagrer de i en dictionary "eventer"
     -> dict of list of str
