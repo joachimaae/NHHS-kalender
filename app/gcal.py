@@ -118,14 +118,6 @@ def hent_events():
 
     return eventer
 
-
-<<<<<<< HEAD
-
-=======
-"""Marcus checking in"""
-"Magnus"
->>>>>>> 9e3f23b7515fb3e7e034afe4de00129061869d43
-
 if __name__ == "__main__":
     """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
     """
