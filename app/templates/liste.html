@@ -11,9 +11,9 @@
 	<title>Liste av events</title>
 </head>
 <body>
-
-{% for i in eventer.items() %}
-<h1> {{ i[1][1] }} </h1>
+<h1> Eventer: </h1>
+{% for key, value in eventer.items() %}
+<h2> {{ value }} </h2>
 {% endfor %}
 
 

@@ -1,0 +1,23 @@
+[
+    {
+    'kind': 'calendar#event',
+    'etag': '"3086885206758000"',
+    'id': '2d05trclhkcsaeodc3iklq2f7e',
+    'status': 'confirmed',
+    'htmlLink': 'https://www.google.com/calendar/event?eid=MmQwNXRyY2xoa2NzYWVvZGMzaWtscTJmN2UgdjYxMnUxcm9odnBmYXUxZmtndGhvbGExZGtAZw',
+    'created': '2018-11-28T22:02:37.000Z',
+    'updated': '2018-11-28T22:04:09.247Z',
+    'summary': 'Punch et Musique',
+    'creator': {'email': 'aae.joachim@gmail.com',
+    'displayName': 'Joachim Aae'},
+    'organizer': {'email': 'v612u1rohvpfau1fkgthola1dk@group.calendar.google.com',
+    'displayName': 'NHHS aktivitetskalender', 'self': True}, 
+    'start': {'dateTime': '2018-12-11T20:00:00+01:00'}, 
+    'end': {'dateTime': '2018-12-12T02:30:00+01:00'}, 
+    'transparency': 'transparent', 
+    'iCalUID': '2d05trclhkcsaeodc3iklq2f7e@google.com', 
+    'sequence': 1, 
+    'extendedProperties': {'private': {'everyoneDeclinedDismissed': '-1'}}, 
+    'reminders': {'useDefault': False}
+    }
+]

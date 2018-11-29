@@ -115,11 +115,18 @@ jQuery(document).ready(function($){
 		this.modalHeader.find('.event-date').text(event.find('.event-date').text());
 		this.modal.attr('data-event', event.parent().attr('data-event'));
 
-		//update event content
+		// BEGIN REMOVED
+/* 		//update event content
 		this.modalBody.find('.event-info').load(event.parent().attr('data-content')+'.html .event-info > *', function(data){
 			//once the event content has been loaded
 			self.element.addClass('content-loaded');
-		});
+		}); */
+		// END REMOVED
+		
+		// BEGIN ADDED
+		this.modalBody.find('.event-info').text(event.parent().attr('data-content'));
+		this.element.addClass('content-loaded');
+		// END REMOVED
 
 		this.element.addClass('modal-is-open');
 

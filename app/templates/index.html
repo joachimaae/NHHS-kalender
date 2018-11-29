@@ -14,8 +14,6 @@
 <div class="cd-schedule loading">
 	<div class="timeline">
 		<ul>
-			<li><span>07:00</span></li>
-			<li><span>07:30</span></li>
 			<li><span>08:00</span></li>
 			<li><span>08:30</span></li>
 			<li><span>09:00</span></li>
@@ -37,6 +35,18 @@
 			<li><span>17:00</span></li>
 			<li><span>17:30</span></li>
 			<li><span>18:00</span></li>
+			<li><span>18:30</span></li>
+			<li><span>19:00</span></li>
+			<li><span>19:30</span></li>
+			<li><span>20:00</span></li>
+			<li><span>20:30</span></li>
+			<li><span>21:00</span></li>
+			<li><span>21:30</span></li>
+			<li><span>22:00</span></li>
+			<li><span>22:30</span></li>
+			<li><span>23:00</span></li>
+			<li><span>23:30</span></li>
+			<li><span>24:00</span></li>
 		</ul>
 	</div> <!-- .timeline -->
 
@@ -46,63 +56,90 @@
 				<div class="top-info"><span>Monday</span></div>
 
 				<ul>
-					<li class="single-event" data-start="09:30" data-end="10:30" data-content="/calendar/event-abs-circuit" data-event="event-1">
+					{% for key, value in eventer.items() if value['ukedag'] == 0 %}
+					<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 						<a href="#0">
-							<em class="event-name">Abs Circuit</em>
-						</a>
-					</li>
-
-					{% for i in eventer.items() %}
-					<li class="single-event" data-start= "{{ i[1][0][11:16] }}" data-end="{{ i[1][1][11:16] }}" data-content="" data-event="event-2">
-						<a href="#0">
-							<em class="event-name">{{ i[1][2] }}</em>
+							<em class="event-name">{{ value['tittel'] }}</em>
 						</a>
 					</li>
 					{% endfor %}
-
 				</ul>
 			</li>
 
 			<li class="events-group">
-				<div class="top-info"><span>Tuesday</span></div>
-
-				<ul>
-				</ul>
-			</li>
-
+				<div class="top-info"><span>Tuesday</span></div>	
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 1 %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
 			<li class="events-group">
 				<div class="top-info"><span>Wednesday</span></div>
-
-				<ul>
-				</ul>
-			</li>
-
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 2 %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
 			<li class="events-group">
-				<div class="top-info"><span>Thursday</span></div>
-				<ul>
-				</ul>
-			</li>
+					<div class="top-info"><span>Thursday</span></div>
 
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 3 %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
 			<li class="events-group">
-				<div class="top-info"><span>Friday</span></div>
+					<div class="top-info"><span>Friday</span></div>
 
-				<ul>
-				</ul>
-			</li>
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 4 %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
 			<li class="events-group">
-				<div class="top-info"><span>Saturday</span></div>
-
-				<ul>
-				</ul>
-			</li>
+					<div class="top-info"><span>Saturday</span></div>
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 5 %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
 			<li class="events-group">
 				<div class="top-info"><span>Sunday</span></div>
-
-				<ul>
-				</ul>
-			</li>
-
-
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 6 %}
+							<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+								<a href="#0">
+									<em class="event-name">{{ value['tittel'] }}</em>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</li>
 
 
 

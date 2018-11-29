@@ -226,7 +226,7 @@ Main Components
 		.events-group > ul {
 			@include clearfix;
 			// 19 is the number of list items in the .timeline
-			height: $row-height*19;
+			height: $row-height*32;
 			/* reset style */
 			display: block;
 			overflow: visible;
@@ -386,6 +386,8 @@ Main Components
 		line-height: 1.4;
 		height: 100%;
 		overflow: hidden;
+		font-size: 1.4em;
+		padding: 1em;
 
 		> div {
 			overflow: auto;

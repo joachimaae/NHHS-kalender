@@ -1,4 +1,4 @@
-# Requires: pip install --upgrade google-api-python-client
+# Requires: google-api-python-client, oauth2client
 
 from __future__ import print_function
 import httplib2
@@ -97,27 +97,42 @@ def hent_events():
         timeMin=now, maxResults=50, singleEvents=True,
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
- 
+
     eventer = {}
-
+    i = 1
     for event in events:
-        start = event['start'].get('dateTime', event['start'].get('date'))
-        slutt = event['end'].get('dateTime')
+        #print("Ny event:")
+        #print(event)
+        start = event['start'].get('dateTime')[11:16]
+        slutt = event['end'].get('dateTime')[11:16]
+        dato = event['start'].get('dateTime')[:10]
+        ukedag = datetime.datetime.strptime(dato, "%Y-%m-%d").weekday()
+        ukenummer = datetime.datetime.strptime(dato, "%Y-%m-%d").isocalendar()[1]
+        tittel = event['summary']
+        try:
+            description = event['description']
+        except:
+            description = "Ingen beskrivelse tilgjengelig"
+        event_id = event['id']
 
-        if event['id'] in eventer:
-            eventer[event].append([start, slutt, event['summary']])
-            try:
-                eventer[event['id']].append(event['description'])
-            except:
-                pass
-        else:
-            eventer[event['id']] = [start, slutt, event['summary']]
-            try:
-                eventer[event['id']].append(event['description'])
-            except:
-                pass
+        event_dict = {
+            'start_tid':start,
+            'slutt_tid': slutt,
+            'dato':dato,
+            'tittel': tittel,
+            'beskrivelse':description,
+            'ukedag':ukedag,
+            'ukenummer':ukenummer,
+            'farge':i
+        }
+        if i < 4:
+            i += 1
+        else: 
+            i = 1
+        eventer[event_id] = event_dict
 
     return eventer
+    # Bedre å lagre som dictionary, evt. bare bruke den direkte?
 
 if __name__ == "__main__":
     """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
