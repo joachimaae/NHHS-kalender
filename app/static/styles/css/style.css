@@ -17,10 +17,31 @@ body {
   color: #222222;
   background-color: white;
 }
+body h2 {
+  font-size: 2.2em;
+}
 
 a {
   color: #A2B9B2;
   text-decoration: none;
+}
+
+/* Added below*/
+.weekswitch {
+  text-align: center;
+  display: block;
+  padding-top: 1em;
+  margin: 0.5em;
+}
+.weekswitch a {
+  color: black;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+}
+.weekswitch a:hover {
+  background-color: #ddd;
 }
 
 /* -------------------------------- 

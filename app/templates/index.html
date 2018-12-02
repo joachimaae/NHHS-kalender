@@ -11,6 +11,16 @@
 	<title>NHHS Kalender</title>
 </head>
 <body>
+
+<h1 style="text-align:center;font-size: 3em;padding:0.5em;">Kalender for NHHS</h1> 
+<h2 style="text-align:center;">Uke: {{ ukenummer_dag }}</h2> 
+
+<div class="weekswitch">
+  <a href="/index/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
+  <a href="/index">I dag</a>
+  <a href="/index/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
+</div>
+
 <div class="cd-schedule loading">
 	<div class="timeline">
 		<ul>
@@ -56,7 +66,7 @@
 				<div class="top-info"><span>Monday</span></div>
 
 				<ul>
-					{% for key, value in eventer.items() if value['ukedag'] == 0 %}
+					{% for key, value in eventer.items() if value['ukedag'] == 0 and value['ukenummer']==ukenummer_dag %}
 					<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 						<a href="#0">
 							<em class="event-name">{{ value['tittel'] }}</em>
@@ -69,7 +79,7 @@
 			<li class="events-group">
 				<div class="top-info"><span>Tuesday</span></div>	
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 1 %}
+						{% for key, value in eventer.items() if value['ukedag'] == 1 and value['ukenummer']==ukenummer_dag %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0">
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -81,7 +91,7 @@
 			<li class="events-group">
 				<div class="top-info"><span>Wednesday</span></div>
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 2 %}
+						{% for key, value in eventer.items() if value['ukedag'] == 2 and value['ukenummer']==ukenummer_dag %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0">
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -94,7 +104,7 @@
 					<div class="top-info"><span>Thursday</span></div>
 
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 3 %}
+						{% for key, value in eventer.items() if value['ukedag'] == 3 and value['ukenummer']==ukenummer_dag %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0">
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -107,7 +117,7 @@
 					<div class="top-info"><span>Friday</span></div>
 
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 4 %}
+						{% for key, value in eventer.items() if value['ukedag'] == 4 and value['ukenummer']==ukenummer_dag %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0">
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -119,7 +129,7 @@
 			<li class="events-group">
 					<div class="top-info"><span>Saturday</span></div>
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 5 %}
+						{% for key, value in eventer.items() if value['ukedag'] == 5 and value['ukenummer']==ukenummer_dag %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0">
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -131,7 +141,7 @@
 			<li class="events-group">
 				<div class="top-info"><span>Sunday</span></div>
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 6 %}
+						{% for key, value in eventer.items() if value['ukedag'] == 6 and value['ukenummer']==ukenummer_dag %}
 							<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 								<a href="#0">
 									<em class="event-name">{{ value['tittel'] }}</em>

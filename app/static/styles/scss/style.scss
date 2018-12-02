@@ -27,11 +27,38 @@ body {
 	}
 	color: $text-color;
 	background-color: $bg-color;
+
+
+
+	h2 {
+		font-size: 2.2em;
+	}
 }
 
 a {
 	color: $link-color;
 	text-decoration: none;
+
+}
+/* Added below*/
+.weekswitch{
+	text-align: center;
+	display: block;
+	padding-top: 1em;
+	margin: 0.5em;
+	a {
+		color: black;
+		padding: 8px 16px;
+		text-decoration: none;
+		transition: background-color .3s;
+		border: 1px solid #ddd;
+		&:hover {
+			background-color: #ddd;
+		}
+
+
+	}
+		
 }
 
 /* -------------------------------- 
@@ -586,3 +613,5 @@ Main Components
 	opacity: 1;
 	visibility: visible;
 }
+
+
