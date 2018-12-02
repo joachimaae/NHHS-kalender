@@ -5,20 +5,16 @@ En HTML/CSS/JS kalender som oppdateres fra en Google kalender ved bruk av Python
 
 Basert på denne templaten: https://codyhouse.co/demo/schedule-template/index.html
 
-Programmet skal hente inn informasjon om arrangementet, slik som:
+## Funksjonalitet:
 
-- Tittel
-- Tidspunkt, og plassere i riktig sted i kalenderen.
-- Beskrivelse, som skal kunne vises hvis man klikker på arrangementet.
+Henter inn fra google calendar:
 
-I tillegg til funksjonaliteten på templaten, skal følgende være mulig:
+- [x] Tittel 
+- [x] Tidspunkt, og plassere i riktig sted i kalenderen.
+- [x] Beskrivelse, som skal kunne vises hvis man klikker på arrangementet.
 
-- Bytte uke
-- Mulighet for overlappende tidspunkter. (Flere arrangementer over samme tidsrom)
+Andre funksjoner:
 
-
-Dog er hovedformålet å lære av dette. Ikke selve sluttproduktet.
-
-
-Update des. 2018
-All funksjonalitet utenom overlappende tidspunkter er lagt inn.
+- [x] Bytte uke
+- [ ] Mulighet for overlappende tidspunkter. (Flere arrangementer over samme tidsrom)
+- [ ] Engelsk språk
