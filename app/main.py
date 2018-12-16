@@ -1,7 +1,9 @@
-from flask import render_template
-from app import app
-from app import gcal
+from flask import Flask, render_template
+import gcal
 import datetime
+
+app = Flask(__name__)
+
 @app.route('/index')
 @app.route('/')
 def index():
@@ -23,3 +25,7 @@ def liste():
     return render_template("liste.html",
                            eventer=events)
                            
+
+if __name__ == "__main__":
+    app.run(debug=True)
+

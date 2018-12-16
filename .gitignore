@@ -1,6 +1,6 @@
 # Ignorere client secret
 client_secret.json
-
+cred.json
 
 # Ignorere CPython
 
