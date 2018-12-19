@@ -3,6 +3,7 @@ client_secret.json
 cred.json
 
 # Ignorere CPython
-
 *.cpython-35.pyc
 *.cpython-36.pyc
+
+.vscode

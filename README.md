@@ -17,5 +17,8 @@ Andre funksjoner:
 
 - [x] Bytte uke
 - [ ] Mulighet for overlappende tidspunkter. (Flere arrangementer over samme tidsrom)
-- [ ] Engelsk språk
+- [x] Engelsk språk
 - [x] Lagrede credentials for Google
+
+Finpuss som mangler:
+ - Dato på dag
