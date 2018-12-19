@@ -20,5 +20,5 @@ Andre funksjoner:
 - [x] Engelsk språk
 - [x] Lagrede credentials for Google
 
-Finpuss som mangler:
- - Dato på dag
+Kjente bugs: 
+- Når man går fra uke 52 til uke 1 så vil ikke datoene stemme pga. årstallet ikke øker.
