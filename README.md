@@ -1,6 +1,5 @@
 # NHHS Kalender
 
-
 En HTML/CSS/JS kalender som oppdateres fra en Google kalender ved bruk av Python og Google API.
 
 Basert på denne templaten: https://codyhouse.co/demo/schedule-template/index.html
