@@ -251,6 +251,7 @@ Main Components
 		.events-group > ul {
 			@include clearfix;
 			// 19 is the number of list items in the .timeline
+			// endret til 32 for å dekke en hel dag. 
 			height: $row-height*32;
 			/* reset style */
 			display: block;

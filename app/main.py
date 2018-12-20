@@ -18,7 +18,6 @@ def get_dates(year, week):
         start + datetime.timedelta(days=1),
         start + datetime.timedelta(days=2),
         start + datetime.timedelta(days=3),
-        start + datetime.timedelta(days=3),
         start + datetime.timedelta(days=4),
         start + datetime.timedelta(days=5),
         start + datetime.timedelta(days=6)

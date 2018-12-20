@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles/css/reset.css') }}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles/css/style.css') }}"> <!-- Resource style -->
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  	
+	<title>NHHS Kalender</title>
+</head>
+<body>
+
+<h1 style="text-align:center;font-size: 3em;padding:0.5em;">Kalender for NHHS</h1> 
+<h2 style="text-align:center;">Uke: {{ ukenummer_dag }}</h2> 
+
+<div class="weekswitch">
+  <a href="/no/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
+  <a href="/no/">I dag</a>
+  <a href="/no/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
+</div>
+
+<div class="cd-schedule loading">
+	<div class="timeline">
+		<ul>
+			<li><span>08:00</span></li>
+			<li><span>09:00</span></li>
+			<li><span>10:00</span></li>
+			<li><span>11:00</span></li>
+			<li><span>12:00</span></li>
+			<li><span>13:00</span></li>
+			<li><span>14:00</span></li>
+			<li><span>15:00</span></li>
+			<li><span>16:00</span></li>
+			<li><span>17:00</span></li>
+			<li><span>18:00</span></li>
+			<li><span>19:00</span></li>
+			<li><span>20:00</span></li>
+			<li><span>21:00</span></li>
+			<li><span>22:00</span></li>
+			<li><span>23:00</span></li>
+			<li><span>24:00</span></li>
+		</ul>
+	</div> <!-- .timeline -->
+
+	<div class="events">
+		<ul>
+			<li class="events-group">
+				<div class="top-info"><span>Mandag {{dates[0]}}</span></div>
+
+				<ul>
+					{% for key, value in eventer.items() if value['ukedag'] == 0 and value['ukenummer']==ukenummer_dag %}
+					<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+						<a href="#0">
+							<em class="event-name">{{ value['tittel'] }}</em>
+						</a>
+					</li>
+					{% endfor %}
+				</ul>
+			</li>
+
+			<li class="events-group">
+				<div class="top-info"><span>Tirsdag {{dates[1]}}</span></div>	
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 1 and value['ukenummer']==ukenummer_dag %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
+			<li class="events-group">
+				<div class="top-info"><span>Onsdag {{dates[2]}}</span></div>
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 2 and value['ukenummer']==ukenummer_dag %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
+			<li class="events-group">
+					<div class="top-info"><span>Torsdag {{dates[3]}}</span></div>
+
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 3 and value['ukenummer']==ukenummer_dag %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
+			<li class="events-group">
+					<div class="top-info"><span>Fredag {{dates[4]}}</span></div>
+
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 4 and value['ukenummer']==ukenummer_dag %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
+			<li class="events-group">
+					<div class="top-info"><span>Lørdag {{dates[5]}}</span></div>
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 5 and value['ukenummer']==ukenummer_dag %}
+						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<a href="#0">
+								<em class="event-name">{{ value['tittel'] }}</em>
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+				</li>
+			<li class="events-group">
+				<div class="top-info"><span>Søndag {{dates[6]}}</span></div>
+					<ul>
+						{% for key, value in eventer.items() if value['ukedag'] == 6 and value['ukenummer']==ukenummer_dag %}
+							<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+								<a href="#0">
+									<em class="event-name">{{ value['tittel'] }}</em>
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+					</li>
+
+
+
+		</ul>
+	</div>
+
+	<div class="event-modal">
+		<header class="header">
+			<div class="content">
+				<span class="event-date"></span>
+				<h3 class="event-name"></h3>
+			</div>
+
+			<div class="header-bg"></div>
+		</header>
+
+		<div class="body">
+			<div class="event-info"></div>
+			<div class="body-bg"></div>
+		</div>
+
+		<a href="#0" class="close">Close</a>
+	</div>
+
+	<div class="cover-layer"></div>
+</div> <!-- .cd-schedule -->
+<script src="{{ url_for('static',filename='styles/js/modernizr.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<script>
+	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+</script>
+<script src="{{ url_for('static',filename='styles/js/main.js') }}"></script> <!-- Resource jQuery -->
+</body>
+</html>
