@@ -13,7 +13,7 @@ def get_dates(year, week):
         d = d + datetime.timedelta(7-d.weekday())
     dlt = datetime.timedelta(days = (week-1)*7)
     start = d + dlt
-    rawdatelist = [
+    datelist = [
         start,
         start + datetime.timedelta(days=1),
         start + datetime.timedelta(days=2),
@@ -22,17 +22,14 @@ def get_dates(year, week):
         start + datetime.timedelta(days=5),
         start + datetime.timedelta(days=6)
         ]
-    datelist = []
-    for i in rawdatelist:
-        datelist.append(str(i.day) + '.' + str(i.month))
-
+    datelist = [str(i.day) + '.' + str(i.month) for i in datelist]
     return datelist
 
 
 @app.route('/', defaults={'lang': 'no'})
 @app.route('/<lang>/')
 def index(lang):
-    events = gcal.hent_events()
+    events = gcal.hent_events(lang)
     ukenr = datetime.datetime.now().isocalendar()[1]
     year = datetime.datetime.now().isocalendar()[0]
     dates = get_dates(year, ukenr)
@@ -43,7 +40,7 @@ def index(lang):
 
 @app.route('/<lang>/<weeknum>')
 def weekswitch(weeknum, lang):
-    events = gcal.hent_events()
+    events = gcal.hent_events(lang)
     year = datetime.datetime.now().isocalendar()[0]
     dates = get_dates(year, int(weeknum))
     if(lang == 'no'):

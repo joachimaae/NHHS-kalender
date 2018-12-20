@@ -92,7 +92,7 @@ def list_events():
             pass
 
 
-def hent_events():
+def hent_events(lang='no'):
     """ Henter arrangementer og lagrer de i en dictionary "eventer"
     -> dict of list of str
 
@@ -104,8 +104,9 @@ def hent_events():
     service = discovery.build('calendar', 'v3', credentials=credentials)
 
     now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
+    CalID = 'v612u1rohvpfau1fkgthola1dk@group.calendar.google.com' if lang=='no' else 'pfj36dednqcnd0rm55rqjdfrho@group.calendar.google.com'
     eventsResult = service.events().list(
-        calendarId='v612u1rohvpfau1fkgthola1dk@group.calendar.google.com',
+        calendarId=CalID,
         timeMin=now, maxResults=50, singleEvents=True,
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
