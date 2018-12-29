@@ -9,6 +9,7 @@ from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
 import datetime
+import time
 
 try:
     import argparse
@@ -118,6 +119,8 @@ def hent_events(lang='no'):
         #print(event)
         start = event['start'].get('dateTime')[11:16]
         slutt = event['end'].get('dateTime')[11:16]
+        varighet = datetime.datetime.strptime(event['end'].get('dateTime'), '%Y-%m-%dT%H:%M:%S%z') - datetime.datetime.strptime(event['start'].get('dateTime'), '%Y-%m-%dT%H:%M:%S%z')
+        varighet = varighet.seconds/3600
         dato = event['start'].get('dateTime')[:10]
         ukedag = datetime.datetime.strptime(dato, "%Y-%m-%d").weekday()
         ukenummer = datetime.datetime.strptime(dato, "%Y-%m-%d").isocalendar()[1]
@@ -136,7 +139,8 @@ def hent_events(lang='no'):
             'beskrivelse':description,
             'ukedag':ukedag,
             'ukenummer':ukenummer,
-            'farge':i
+            'farge':i,
+            'varighet':varighet
         }
         if i < 4:
             i += 1

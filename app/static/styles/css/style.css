@@ -214,7 +214,7 @@ Main Components
     margin-bottom: 0;
   }
   .cd-schedule .events .events-group > ul {
-    height: 1600px;
+    height: 800px;
     /* reset style */
     display: block;
     overflow: visible;
@@ -244,6 +244,9 @@ Main Components
   }
   .cd-schedule .events .single-event a {
     padding: 1.2em;
+  }
+  .cd-schedule .events .single-event a.mindre {
+    padding: 0.3em;
   }
   .cd-schedule .events .single-event:last-of-type {
     /* reset style */
