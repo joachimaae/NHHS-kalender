@@ -22,9 +22,3 @@ Andre funksjoner:
 Kjente bugs:
 
 - Når man går fra uke 52 til uke 1 så vil ikke datoene stemme pga. årstallet ikke øker.
-- Kalenderen er for lang, man kan fikse dette ved å endre antall tidspunkt (indextwo.html), men da må man også endre CSS slik at padding på :
-    @media only screen and (min-width: 800px)
-        .cd-schedule .events .single-event a {
-            padding: 0.3em;
-        }
-
