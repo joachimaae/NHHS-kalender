@@ -119,7 +119,7 @@ def hent_events(lang='no'):
         #print(event)
         start = event['start'].get('dateTime')[11:16]
         slutt = event['end'].get('dateTime')[11:16]
-        varighet = datetime.datetime.strptime(event['end'].get('dateTime'), '%Y-%m-%dT%H:%M:%S%z') - datetime.datetime.strptime(event['start'].get('dateTime'), '%Y-%m-%dT%H:%M:%S%z')
+        varighet = datetime.datetime.strptime(event['end'].get('dateTime')[:-6], '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(event['start'].get('dateTime')[:-6], '%Y-%m-%dT%H:%M:%S')
         varighet = varighet.seconds/3600
         dato = event['start'].get('dateTime')[:10]
         ukedag = datetime.datetime.strptime(dato, "%Y-%m-%d").weekday()
