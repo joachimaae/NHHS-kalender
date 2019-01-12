@@ -18,6 +18,7 @@ Andre funksjoner:
 - [ ] Mulighet for overlappende tidspunkter. (Flere arrangementer over samme tidsrom)
 - [x] Engelsk språk
 - [x] Lagrede credentials for Google
+- [ ] Knapp for å abonnere på Google kalenderen
 
 Kjente bugs:
 
