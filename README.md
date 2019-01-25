@@ -20,7 +20,10 @@ Andre funksjoner:
 - [x] Lagrede credentials for Google
 - [ ] Knapp for å abonnere på Google kalenderen
 
-Kjente bugs:
+Etterspurte funksjoner:
+- [ ] Søkefunksjon
 
-- Når man går fra uke 52 til uke 1 så vil ikke datoene stemme pga. årstallet ikke øker.
-- Appen crasher når man lager heldagsevent.
+bugs:
+
+- [ ] Når man går fra uke 52 til uke 1 så vil ikke datoene stemme pga. årstallet ikke øker.
+- [ ] Appen crasher når man lager heldagsevent.
