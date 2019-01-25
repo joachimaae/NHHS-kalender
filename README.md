@@ -15,7 +15,7 @@ Henter inn fra google calendar:
 Andre funksjoner:
 
 - [x] Bytte uke
-- [ ] Mulighet for overlappende tidspunkter. (Flere arrangementer over samme tidsrom)
+- [ ] Mulighet for overlappende tidspunkter. (Flere arrangementer over samme tidsrom, [eksempel.](http://it.nhhs.no/FKU-Cal2/intma/))
 - [x] Engelsk språk
 - [x] Lagrede credentials for Google
 - [ ] Knapp for å abonnere på Google kalenderen
