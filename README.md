@@ -19,6 +19,7 @@ Andre funksjoner:
 - [x] Engelsk språk
 - [x] Lagrede credentials for Google
 - [ ] Knapp for å abonnere på Google kalenderen
+- [ ] Hente inn fra NU kalenderen
 
 Etterspurte funksjoner:
 - [ ] Søkefunksjon
