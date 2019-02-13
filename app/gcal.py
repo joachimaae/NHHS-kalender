@@ -43,7 +43,7 @@ def get_credentials():
             SERVICE_ACCOUNT_FILE, scopes=SCOPES)
         return credentials
     except:
-        print('fuck')
+        return
     '''
         home_dir = os.path.expanduser('~')
         credential_dir = os.path.join(home_dir, '.credentials')
@@ -90,6 +90,12 @@ def hent_events(lang='no'):
     for event in events:
         #print("Ny event:")
         #print(event)
+        if ('date' in event['start']):
+            date = event['start'].get('date')
+            event['start'] = {'dateTime': date + 'T07:00:00+01:00'}
+            event['end'] = {'dateTime': date + 'T23:59:00+01:00'}
+
+
         start = event['start'].get('dateTime')[11:16]
         slutt = event['end'].get('dateTime')[11:16]
         varighet = datetime.datetime.strptime(event['end'].get('dateTime')[:-6], '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(event['start'].get('dateTime')[:-6], '%Y-%m-%dT%H:%M:%S')
