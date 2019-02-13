@@ -87,6 +87,7 @@ def hent_events(lang='no'):
 
     eventer = {}
     i = 1
+    kommentar = "Hei"
     for event in events:
         #print("Ny event:")
         #print(event)
