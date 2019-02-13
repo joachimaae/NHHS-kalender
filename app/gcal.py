@@ -22,7 +22,7 @@ from google.oauth2 import service_account
 # If modifying these scopes, delete your previously saved credentials
 # at ~/.credentials/calendar-python-quickstart.json
 SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
-CLIENT_SECRET_FILE = 'client_secret.json'
+CLIENT_SECRET_FILE = 'cred.json'
 APPLICATION_NAME = 'Google Calendar API'
 
 
@@ -43,7 +43,8 @@ def get_credentials():
             SERVICE_ACCOUNT_FILE, scopes=SCOPES)
         return credentials
     except:
-
+        return
+    '''
         home_dir = os.path.expanduser('~')
         credential_dir = os.path.join(home_dir, '.credentials')
         if not os.path.exists(credential_dir):
@@ -62,6 +63,7 @@ def get_credentials():
                 credentials = tools.run(flow, store)
             print('Storing credentials to ' + credential_path)
         return credentials
+        '''
 
 
 def hent_events(lang='no'):
@@ -88,7 +90,10 @@ def hent_events(lang='no'):
     for event in events:
         #print("Ny event:")
         #print(event)
-        
+        if ('date' in event['start']):
+            date = event['start'].get('date')
+            event['start'] = {'dateTime': date + 'T07:00:00+01:00'}
+            event['end'] = {'dateTime': date + 'T23:59:00+01:00'}
 
 
         start = event['start'].get('dateTime')[11:16]
