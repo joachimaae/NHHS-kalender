@@ -27,4 +27,4 @@ Etterspurte funksjoner:
 bugs:
 
 - [ ] Når man går fra uke 52 til uke 1 så vil ikke datoene stemme pga. årstallet ikke øker.
-- [ ] Appen crasher når man lager heldagsevent.
+- [x] Appen crasher når man lager heldagsevent.
