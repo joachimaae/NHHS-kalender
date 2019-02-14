@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import gcal
 import datetime
+import search
 
 app = Flask(__name__)
 
@@ -56,7 +57,11 @@ def liste():
     events = gcal.hent_events()
     return render_template("liste.html",
                            eventer=events)
-                           
+
+@app.route('/search/<item>')
+def lookFor(item):
+    events = search.searchFor(item)
+    return render_template('liste.html', eventer=events)
 
 if __name__ == "__main__":
     app.run(debug=True)
