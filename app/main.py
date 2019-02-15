@@ -26,7 +26,7 @@ def get_dates(year, week):
     datelist = [str(i.day) + '.' + str(i.month) for i in datelist]
     return datelist
 
-
+'''
 @app.route('/', defaults={'lang': 'no'})
 @app.route('/<lang>/')
 def index(lang):
@@ -38,16 +38,18 @@ def index(lang):
         return render_template("index.html", eventer=events, ukenummer_dag=int(ukenr), lang=lang, dates=dates)
     else:
         return render_template("indexeng.html", eventer=events, ukenummer_dag=int(ukenr), lang=lang, dates=dates)
+'''
 
-@app.route('/<lang>/<weeknum>')
-def weekswitch(weeknum, lang):
+@app.route('/', defaults={'lang': 'no', 'year':datetime.datetime.now().isocalendar()[0], 'weeknum':datetime.datetime.now().isocalendar()[1]})
+@app.route('/<lang>/<year>/<weeknum>')
+def weekswitch(year, weeknum, lang):
     events = gcal.hent_events(lang)
-    year = datetime.datetime.now().isocalendar()[0]
-    dates = get_dates(year, int(weeknum))
+    dates = get_dates(int(year), int(weeknum))
+
     if(lang == 'no'):
-        return render_template("index.html", eventer=events, ukenummer_dag=int(weeknum), lang=lang, dates=dates)
+        return render_template("index.html", eventer=events, ukenummer_dag=int(weeknum), aar=int(year), lang=lang, dates=dates)
     else:
-        return render_template("indexeng.html", eventer=events, ukenummer_dag=int(weeknum), lang=lang, dates=dates)
+        return render_template("indexeng.html", eventer=events, ukenummer_dag=int(weeknum), aar=int(year), lang=lang, dates=dates)
 
 @app.route('/liste')
 def liste():

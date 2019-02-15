@@ -17,9 +17,9 @@
 <h2 style="text-align:center;">Uke: {{ ukenummer_dag }}</h2> 
 
 <div class="weekswitch">
-  <a href="/no/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
+  <a href="/no/{{aar if ukenummer_dag!=1 else aar-1}}/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
   <a href="/no/">I dag</a>
-  <a href="/no/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
+  <a href="/no/{{aar if ukenummer_dag!=52 else aar+1}}/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
 </div>
 
 <div class="cd-schedule loading">
