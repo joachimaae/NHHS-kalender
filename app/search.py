@@ -12,6 +12,11 @@ def searchFor(item):
         if (distance <= limit):
             continue
         matches[key] = value
+
+        '''
+        url/search?search=word
+        kan bruke request.args.get("search")
+        '''
         
     return matches
         
