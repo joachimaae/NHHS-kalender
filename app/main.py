@@ -26,19 +26,6 @@ def get_dates(year, week):
     datelist = [str(i.day) + '.' + str(i.month) for i in datelist]
     return datelist
 
-'''
-@app.route('/', defaults={'lang': 'no'})
-@app.route('/<lang>/')
-def index(lang):
-    events = gcal.hent_events(lang)
-    ukenr = datetime.datetime.now().isocalendar()[1]
-    year = datetime.datetime.now().isocalendar()[0]
-    dates = get_dates(year, ukenr)
-    if(lang == 'no'):
-        return render_template("index.html", eventer=events, ukenummer_dag=int(ukenr), lang=lang, dates=dates)
-    else:
-        return render_template("indexeng.html", eventer=events, ukenummer_dag=int(ukenr), lang=lang, dates=dates)
-'''
 
 @app.route('/', defaults={'lang': 'no', 'year':datetime.datetime.now().isocalendar()[0], 'weeknum':datetime.datetime.now().isocalendar()[1]})
 @app.route('/<lang>/<year>/<weeknum>')
