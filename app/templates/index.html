@@ -123,7 +123,7 @@
 				<div class="top-info"><span>Onsdag {{dates[2]}}</span></div>
 					<ul>
 						{% for key, value in eventer.items() if value['ukedag'] == 2 and value['ukenummer']==ukenummer_dag %}
-						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+						<li class="single-event left" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name {{'mindre' if value['varighet'] <= 1.5 }}">{{ value['tittel'] }}</em>
 							</a>
