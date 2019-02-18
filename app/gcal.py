@@ -81,7 +81,8 @@ def hent_events(lang='no'):
     CalID = 'v612u1rohvpfau1fkgthola1dk@group.calendar.google.com' if lang=='no' else 'pfj36dednqcnd0rm55rqjdfrho@group.calendar.google.com'
     eventsResult = service.events().list(
         calendarId=CalID,
-        timeMin=now, maxResults=50, singleEvents=True,
+        timeMin=now, maxResults=50, 
+        singleEvents=True,
         orderBy='startTime').execute()
     events = eventsResult.get('items', [])
 

@@ -9,13 +9,14 @@
 	<link rel="stylesheet" href="{{ url_for('static',filename='styles/css/style.css') }}"> <!-- Resource style -->
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
+	<!--
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	  
+	-->
 	
 	
 	<title>NHHS Kalender</title>
@@ -23,6 +24,18 @@
 <body>
 
 <h1 style="text-align:center;font-size: 3em;padding:0.5em;">Kalender for NHHS</h1> 
+<!---
+<div class="container">
+	<div class="row justify-content-end">
+			<div class="col-1">
+				<button type="button" class="btn btn-outline-info text-right" data-toggle="modal" data-target="#exampleModalCenter">
+						Kalenderstrøm
+				</button>
+				
+			</div>
+	</div>
+</div>
+-->
 <h2 style="text-align:center;">Uke: {{ ukenummer_dag }}</h2> 
 
 <div class="weekswitch">
@@ -31,20 +44,11 @@
   <a href="/no/{{aar if ukenummer_dag!=52 else aar+1}}/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
 </div>
 
-<div class="container">
-	<div class="row justify-content-end">
-			<div class="col-1">
-				<!-- Button trigger modal -->
-				<button type="button" class="btn btn-outline-info text-right" data-toggle="modal" data-target="#exampleModalCenter">
-						Kalenderstrøm
-				</button>
-				
-			</div>
-	</div>
-</div>
+
 
 	  
 	<!-- Modal -->
+	<!--
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
@@ -63,7 +67,7 @@
 		</div>
 	</div>
 </div>
-
+-->
 <div class="cd-schedule loading">
 	<div class="timeline">
 		<ul>
