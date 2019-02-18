@@ -77,10 +77,7 @@ def hent_events(lang='no'):
     #service = discovery.build('calendar', 'v3', http=http)
     service = discovery.build('calendar', 'v3', credentials=credentials)
 
-    #now = datetime.datetime.utcnow().isoformat() + 'Z' # 'Z' indicates UTC time
-    # 2019-02-17T17:48:32.113293Z
     now = str(datetime.date.today() - datetime.timedelta(days=7)) + 'T00:00:0.0Z'
-    print(now)
     CalID = 'v612u1rohvpfau1fkgthola1dk@group.calendar.google.com' if lang=='no' else 'pfj36dednqcnd0rm55rqjdfrho@group.calendar.google.com'
     eventsResult = service.events().list(
         calendarId=CalID,
