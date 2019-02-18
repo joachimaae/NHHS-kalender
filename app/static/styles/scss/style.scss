@@ -276,7 +276,33 @@ Main Components
 			height: auto;
 			max-width: none;
 			margin-right: 0;
+			&.left {
+				width: calc(50% + 2px);
+				a {
+					padding: 0.4em;
+					.event-date{
+						font-size: 0.6em;
+					}
+					.event-name{
+						font-size: 0.7em;
+					}
+				}
+			}
 
+			&.right {
+				width: calc(50% + 2px);
+				right: -0.5px;
+				left: inherit;
+				a {
+					padding: 0.4em;
+					.event-date{
+						font-size: 0.6em;
+					}
+					.event-name{
+						font-size: 0.7em;
+					}
+				}
+			}
 			a {
 				padding: 1.2em;
 
