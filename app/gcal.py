@@ -39,7 +39,7 @@ def get_credentials():
     except:
         return
 
-## Test for hvis to tidpunkt overlapper   
+## Test for hvis to tidpunkt overlapper, Hjelpefunskjon til check_for_overlaps  
 def overlap(tid1, tid2, tid3):
     delta1 = tid2 - tid1
     delta2 = tid3 - tid1
@@ -49,14 +49,16 @@ def overlap(tid1, tid2, tid3):
     
     return False
 
-## Finn den motsatte siden
+## Finn den motsatte siden, Hjelpefunskjon til check_for_overlaps  
 def opositeSide(side):
     if (side == 'left'):
         return 'right'
     
     return 'left'
 
+## Funskjon for å legge til side for eventer hvor det er flere på et tidspunkt
 def check_for_overlaps(liste):
+    global defaultPos
     datepairs = []
 
     ## Finn eventer som er på samme dag
@@ -82,12 +84,11 @@ def check_for_overlaps(liste):
     datepairs = set(map(tuple, datepairs))
     datepairs = list(map(list, datepairs))
 
-    for i in datepairs:
-        print(i)
 
     ## Se om eventene på samme dag overlapper med tanke på tidspunkt
     for i in datepairs:
         isOverlap = False
+        ## Henter nåværende posisjon
         pos1 = liste[i[0]]['posisjon']
         pos2 = liste[i[1]]['posisjon']
 
@@ -104,17 +105,14 @@ def check_for_overlaps(liste):
         ## Hvis 1 starter før 2
         if (start_tid_1 < start_tid_2):
             isOverlap = overlap(start_tid_1, slutt_tid_1, start_tid_2)
-            #print(start_tid_1, start_tid_2)
 
         ## Hvis 2 starter før 1
         if (start_tid_2 < start_tid_1):
-            isOverlap =overlap(start_tid_2, slutt_tid_2, start_tid_1)
-            #print(start_tid_2, start_tid_1)
+            isOverlap = overlap(start_tid_2, slutt_tid_2, start_tid_1)
         
         ## Hvis de starter likt
         if (start_tid_1 == start_tid_2):
             isOverlap = True
-            #print(start_tid_1, start_tid_2)
 
         ## Hvis overlapp (litt ekstra logikk for når det er 2 som har overlapp med 1)
         if (isOverlap):
