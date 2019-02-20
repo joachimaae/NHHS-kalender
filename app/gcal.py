@@ -26,6 +26,7 @@ SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
 CLIENT_SECRET_FILE = 'cred.json'
 APPLICATION_NAME = 'Google Calendar API'
 
+defaultPos = 'center'
 
 def get_credentials():
    
@@ -48,6 +49,13 @@ def overlap(tid1, tid2, tid3):
     
     return False
 
+## Finn den motsatte siden
+def opositeSide(side):
+    if (side == 'left'):
+        return 'right'
+    
+    return 'left'
+
 def check_for_overlaps(liste):
     datepairs = []
 
@@ -69,16 +77,21 @@ def check_for_overlaps(liste):
             templist = [k, l]
             templist.sort()
             datepairs.append(templist)
-           
-
-    
+               
     # Fjern duplekater av eventer på samme dag
     datepairs = set(map(tuple, datepairs))
     datepairs = list(map(list, datepairs))
 
+    for i in datepairs:
+        print(i)
+
     ## Se om eventene på samme dag overlapper med tanke på tidspunkt
     for i in datepairs:
         isOverlap = False
+        pos1 = liste[i[0]]['posisjon']
+        pos2 = liste[i[1]]['posisjon']
+
+
         ## Finn start-slutt tid på event 1
         start_tid_1 = datetime.datetime.strptime(liste[i[0]]['start_tid'], '%H:%M')#.time()
         slutt_tid_1 = datetime.datetime.strptime(liste[i[0]]['slutt_tid'], '%H:%M')#.time()
@@ -103,10 +116,18 @@ def check_for_overlaps(liste):
             isOverlap = True
             #print(start_tid_1, start_tid_2)
 
-        ## Hvis overlapp
+        ## Hvis overlapp (litt ekstra logikk for når det er 2 som har overlapp med 1)
         if (isOverlap):
-            liste[i[0]]['posisjon'] = 'left'
-            liste[i[1]]['posisjon'] = 'right'
+            if (pos1 == defaultPos and pos2 == defaultPos):
+                liste[i[0]]['posisjon'] = 'left'
+                liste[i[1]]['posisjon'] = 'right'
+                continue
+            
+            if (pos1 == defaultPos and pos2 != defaultPos):
+                liste[i[0]]['posisjon'] = opositeSide(pos2)
+
+            if (pos2 == defaultPos and pos1 != defaultPos):
+                liste[i[1]]['posisjon'] = opositeSide(pos1)
     
     return liste
 
@@ -117,6 +138,7 @@ def hent_events(lang='no'):
 
     eventer har  som verdi en liste med arrangementets starttidspunkt, tittel og evt. beskrivelse.
     """
+    global defaultPos
     credentials = get_credentials()
     #http = credentials.authorize(httplib2.Http())
     #service = discovery.build('calendar', 'v3', http=http)
@@ -168,7 +190,7 @@ def hent_events(lang='no'):
             'ukenummer':ukenummer,
             'farge':i,
             'varighet':varighet,
-            'posisjon': 'center'
+            'posisjon': defaultPos
         }
 
         # Farger
@@ -187,5 +209,5 @@ if __name__ == "__main__":
     """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
     """
     eventer = hent_events()
-    check_for_overlaps(eventer)
+    eventer = check_for_overlaps(eventer)
     #print(hent_events())

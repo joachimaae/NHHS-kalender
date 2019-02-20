@@ -28,4 +28,4 @@ bugs:
 
 - [x] Når man går fra uke 52 til uke 1 så vil ikke datoene stemme pga. årstallet ikke øker.
 - [x] Appen crasher når man lager heldagsevent.
-- [ ] Det går ikke an å ha flere enn to eventer samtidig Går heller ikke med flere enn to eventer hvis 1 event overlapper med 2 eventer (feks, event1 er 4 timer langt, event2 og event3 er 1 time langt hver men overlapper med event1 på to forskjellige tidspunkt)
+- [x] Det går ikke an å ha flere enn to eventer samtidig Går heller ikke med flere enn to eventer hvis 1 event overlapper med 2 eventer (feks, event1 er 4 timer langt, event2 og event3 er 1 time langt hver men overlapper med event1 på to forskjellige tidspunkt)
