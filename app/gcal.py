@@ -10,6 +10,7 @@ from oauth2client import tools
 from oauth2client.file import Storage
 import datetime
 import time
+import itertools
 
 try:
     import argparse
@@ -27,15 +28,7 @@ APPLICATION_NAME = 'Google Calendar API'
 
 
 def get_credentials():
-    """Gets valid user credentials from storage.
-
-    If nothing has been stored, or if the stored credentials are invalid,
-    the OAuth2 flow is completed to obtain the new credentials.
-
-    Returns:
-        Credentials, the obtained credential.
-    """
-
+   
     # Use service account if available
     SERVICE_ACCOUNT_FILE="cred.json"
     try:
@@ -44,28 +37,80 @@ def get_credentials():
         return credentials
     except:
         return
-    '''
-        home_dir = os.path.expanduser('~')
-        credential_dir = os.path.join(home_dir, '.credentials')
-        if not os.path.exists(credential_dir):
-            os.makedirs(credential_dir)
-        credential_path = os.path.join(credential_dir,
-                                       'calendar-python-quickstart.json')
 
-        store = Storage(credential_path)
-        credentials = store.get()
-        if not credentials or credentials.invalid:
-            flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
-            flow.user_agent = APPLICATION_NAME
-            if flags:
-                credentials = tools.run_flow(flow, store, flags)
-            else: # Needed only for compatibility with Python 2.6
-                credentials = tools.run(flow, store)
-            print('Storing credentials to ' + credential_path)
-        return credentials
-        '''
+## Test for hvis to tidpunkt overlapper   
+def overlap(tid1, tid2, tid3):
+    delta1 = tid2 - tid1
+    delta2 = tid3 - tid1
 
+    if(delta2 < delta1):
+         return True
+    
+    return False
 
+def check_for_overlaps(liste):
+    datepairs = []
+
+    ## Finn eventer som er på samme dag
+    for k, v in liste.items():
+        dato_1 =  v['dato']
+        
+        for l, m in liste.items():
+            ## Test hvis det er samme event
+            if (k == l):
+                continue
+
+            dato_2 = m['dato']
+        
+            ## Test hvis hendelsen ikke skjer på sammme dato
+            if (dato_1 != dato_2):
+                continue
+            
+            templist = [k, l]
+            templist.sort()
+            datepairs.append(templist)
+           
+
+    
+    # Fjern duplekater av eventer på samme dag
+    datepairs = set(map(tuple, datepairs))
+    datepairs = list(map(list, datepairs))
+
+    ## Se om eventene på samme dag overlapper med tanke på tidspunkt
+    for i in datepairs:
+        isOverlap = False
+        ## Finn start-slutt tid på event 1
+        start_tid_1 = datetime.datetime.strptime(liste[i[0]]['start_tid'], '%H:%M')#.time()
+        slutt_tid_1 = datetime.datetime.strptime(liste[i[0]]['slutt_tid'], '%H:%M')#.time()
+
+        ## Finn start-slutt tid på event 2
+        start_tid_2 = datetime.datetime.strptime(liste[i[1]]['start_tid'], '%H:%M')#.time()
+        slutt_tid_2 = datetime.datetime.strptime(liste[i[1]]['slutt_tid'], '%H:%M')#.time()
+        
+        
+        ## Hvis 1 starter før 2
+        if (start_tid_1 < start_tid_2):
+            isOverlap = overlap(start_tid_1, slutt_tid_1, start_tid_2)
+            #print(start_tid_1, start_tid_2)
+
+        ## Hvis 2 starter før 1
+        if (start_tid_2 < start_tid_1):
+            isOverlap =overlap(start_tid_2, slutt_tid_2, start_tid_1)
+            #print(start_tid_2, start_tid_1)
+        
+        ## Hvis de starter likt
+        if (start_tid_1 == start_tid_2):
+            isOverlap = True
+            #print(start_tid_1, start_tid_2)
+
+        ## Hvis overlapp
+        if (isOverlap):
+            liste[i[0]]['posisjon'] = 'left'
+            liste[i[1]]['posisjon'] = 'right'
+    
+    return liste
+
+       
 def hent_events(lang='no'):
     """ Henter arrangementer og lagrer de i en dictionary "eventer"
     -> dict of list of str
@@ -122,7 +167,8 @@ def hent_events(lang='no'):
             'ukedag':ukedag,
             'ukenummer':ukenummer,
             'farge':i,
-            'varighet':varighet
+            'varighet':varighet,
+            'posisjon': 'center'
         }
 
         # Farger
@@ -132,11 +178,14 @@ def hent_events(lang='no'):
             i = 1
             
         eventer[event_id] = event_dict
-
+    
+    eventer = check_for_overlaps(eventer)
     return eventer
 
 
 if __name__ == "__main__":
     """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
     """
-    print(hent_events())
+    eventer = hent_events()
+    check_for_overlaps(eventer)
+    #print(hent_events())

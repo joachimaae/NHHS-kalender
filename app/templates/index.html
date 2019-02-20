@@ -9,40 +9,13 @@
 	<link rel="stylesheet" href="{{ url_for('static',filename='styles/css/reset.css') }}"> <!-- CSS reset -->
 	<link rel="stylesheet" href="{{ url_for('static',filename='styles/css/style.css') }}"> <!-- Resource style -->
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
-
-<<<<<<< HEAD
-	<!--
-=======
-<<<<<<< HEAD
-=======
->>>>>>> b96777fc19921cd7f925fac9c2d57475b5341053
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 	
 
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-	-->
-	
-	
->>>>>>> dbb0e5b506a68fbf21958095d4da7413896ab8e6
 	<title>NHHS Kalender</title>
 </head>
 <body>
 
 <h1 style="text-align:center;font-size: 3em;padding:0.5em;">Kalender for NHHS</h1> 
-<!---
-<div class="container">
-	<div class="row justify-content-end">
-			<div class="col-1">
-				<button type="button" class="btn btn-outline-info text-right" data-toggle="modal" data-target="#exampleModalCenter">
-						Kalenderstrøm
-				</button>
-				
-			</div>
-	</div>
-</div>
--->
 <h2 style="text-align:center;">Uke: {{ ukenummer_dag }}</h2> 
 
 <div class="weekswitch">
@@ -52,29 +25,6 @@
 </div>
 
 
-
-	  
-	<!-- Modal -->
-	<!--
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-		<div class="modal-header">
-			<h5 class="modal-title" id="exampleModalLongTitle">Kalenderlink</h5>
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-		<div class="modal-body">
-			Her skal det stå en link
-		</div>
-		<div class="modal-footer">
-			<button type="button" class="btn btn-secondary " data-dismiss="modal">Lukk</button>
-		</div>
-		</div>
-	</div>
-</div>
--->
 <div class="cd-schedule loading">
 	<div class="timeline">
 		<ul>
@@ -105,7 +55,7 @@
 
 				<ul>
 					{% for key, value in eventer.items() if value['ukedag'] == 0 and value['ukenummer']==ukenummer_dag %}
-					<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+					<li class="single-event {{ value['posisjon'] }}" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 						<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 							<em class="event-name {{'mindre' if value['varighet'] <= 1.5 }}">{{ value['tittel'] }}</em>
 						</a>
@@ -118,7 +68,7 @@
 				<div class="top-info"><span>Tirsdag {{dates[1]}}</span></div>	
 					<ul>
 						{% for key, value in eventer.items() if value['ukedag'] == 1 and value['ukenummer']==ukenummer_dag %}
-						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+						<li class="single-event {{ value['posisjon'] }}" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name {{'mindre' if value['varighet'] <= 1.5 }}">{{ value['tittel'] }}</em>
 							</a>
@@ -130,7 +80,7 @@
 				<div class="top-info"><span>Onsdag {{dates[2]}}</span></div>
 					<ul>
 						{% for key, value in eventer.items() if value['ukedag'] == 2 and value['ukenummer']==ukenummer_dag %}
-						<li class="single-event left" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+						<li class="single-event {{ value['posisjon'] }}" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name {{'mindre' if value['varighet'] <= 1.5 }}">{{ value['tittel'] }}</em>
 							</a>
@@ -143,7 +93,7 @@
 
 					<ul>
 						{% for key, value in eventer.items() if value['ukedag'] == 3 and value['ukenummer']==ukenummer_dag %}
-						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+						<li class="single-event {{ value['posisjon'] }}" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name {{'mindre' if value['varighet'] <= 1.5 }}">{{ value['tittel'] }}</em>
 							</a>
@@ -156,7 +106,7 @@
 
 					<ul>
 						{% for key, value in eventer.items() if value['ukedag'] == 4 and value['ukenummer']==ukenummer_dag %}
-						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+						<li class="single-event {{ value['posisjon'] }}" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name {{'mindre' if value['varighet'] <= 1.5 }}">{{ value['tittel'] }}</em>
 							</a>
@@ -168,7 +118,7 @@
 					<div class="top-info"><span>Lørdag {{dates[5]}}</span></div>
 					<ul>
 						{% for key, value in eventer.items() if value['ukedag'] == 5 and value['ukenummer']==ukenummer_dag %}
-						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+						<li class="single-event {{ value['posisjon'] }}" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name {{'mindre' if value['varighet'] <= 1.5 }}">{{ value['tittel'] }}</em>
 							</a>
@@ -180,7 +130,7 @@
 				<div class="top-info"><span>Søndag {{dates[6]}}</span></div>
 					<ul>
 						{% for key, value in eventer.items() if value['ukedag'] == 6 and value['ukenummer']==ukenummer_dag %}
-							<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
+							<li class="single-event {{ value['posisjon'] }}" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 								<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 									<em class="event-name {{'mindre' if value['varighet'] <= 1.5 }}">{{ value['tittel'] }}</em>
 								</a>
@@ -217,11 +167,8 @@
 </div> <!-- .cd-schedule -->
 
 
-<<<<<<< HEAD
-=======
 
 <script src="{{ url_for('static',filename='styles/js/modernizr.js') }}"></script>
->>>>>>> dbb0e5b506a68fbf21958095d4da7413896ab8e6
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <script>
 	if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
