@@ -28,6 +28,8 @@ jQuery(document).ready(function($){
 		this.modalMaxWidth = 800;
 		this.modalMaxHeight = 480;
 
+		this.position = ''
+
 		this.animating = false;
 
 		this.initSchedule();
@@ -110,10 +112,24 @@ jQuery(document).ready(function($){
 		var mq = self.mq();
 		this.animating = true;
 
+		// Finn ut om denne er sidestilt eller ikke
+		if (event.parent('li').hasClass('left')) {
+			//console.log('dette funker')
+			this.position = 'left'
+			event.parent('li').removeClass('left');
+		} else if (event.parent('li').hasClass('right')) {
+			this.position = 'right'
+			event.parent('li').removeClass('right');
+		}
+		
+		
 		//update event name and time
 		this.modalHeader.find('.event-name').text(event.find('.event-name').text());
 		this.modalHeader.find('.event-date').text(event.find('.event-date').text());
 		this.modal.attr('data-event', event.parent().attr('data-event'));
+
+		
+		
 
 		// BEGIN REMOVED
 /* 		//update event content
@@ -122,7 +138,7 @@ jQuery(document).ready(function($){
 			self.element.addClass('content-loaded');
 		}); */
 		// END REMOVED
-		
+	
 		// BEGIN ADDED
 		this.modalBody.find('.event-info').text(event.parent().attr('data-content'));
 		this.element.addClass('content-loaded');
@@ -132,6 +148,7 @@ jQuery(document).ready(function($){
 
 		setTimeout(function(){
 			//fixes a flash when an event is selected - desktop version only
+			
 			event.parent('li').addClass('selected-event');
 		}, 10);
 
@@ -207,6 +224,9 @@ jQuery(document).ready(function($){
 		var mq = self.mq();
 
 		this.animating = true;
+
+		//console.log(this.position)
+		event.addClass(this.position);
 
 		if( mq == 'mobile' ) {
 			this.element.removeClass('modal-is-open');
