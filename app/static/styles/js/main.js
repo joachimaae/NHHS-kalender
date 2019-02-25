@@ -28,7 +28,7 @@ jQuery(document).ready(function($){
 		this.modalMaxWidth = 800;
 		this.modalMaxHeight = 480;
 
-		this.position = ''
+		this.position = 'center'
 
 		this.animating = false;
 
@@ -117,10 +117,18 @@ jQuery(document).ready(function($){
 			//console.log('dette funker')
 			this.position = 'left'
 			event.parent('li').removeClass('left');
-		} else if (event.parent('li').hasClass('right')) {
+			//console.log('venstre');
+		} 
+		if (event.parent('li').hasClass('right')) {
 			this.position = 'right'
 			event.parent('li').removeClass('right');
+			//console.log('høyre');
 		}
+		else {
+			this.position = 'center'
+			//console.log('midten');
+		}
+
 		
 		
 		//update event name and time
@@ -226,6 +234,7 @@ jQuery(document).ready(function($){
 		this.animating = true;
 
 		//console.log(this.position)
+		// Legg tilbake sidestilte klassen
 		event.addClass(this.position);
 
 		if( mq == 'mobile' ) {
