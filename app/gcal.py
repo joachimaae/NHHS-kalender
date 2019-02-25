@@ -135,6 +135,7 @@ def hent_events(lang):
             startTid = '08:00' ## Hvis det er heldags
             sluttTid = '23:00'
         
+
         if timeConverter(startTid) < timeConverter('08:00'):
             startTid = '08:00'
                 
@@ -143,6 +144,8 @@ def hent_events(lang):
         dato = '{}-{:02d}-{:02d}'.format(start.year, start.month, start.day)
         ukedag = datetime.datetime.strptime(dato, "%Y-%m-%d").weekday()
         ukenummer = datetime.datetime.strptime(dato, "%Y-%m-%d").isocalendar()[1]
+
+        year = start.year
 
         tittel = str(e.get('SUMMARY'))
         beskrivelse = str(e.get('DESCRIPTION'))
@@ -155,6 +158,7 @@ def hent_events(lang):
             'beskrivelse': beskrivelse,
             'ukedag': ukedag,
             'ukenummer': ukenummer,
+            'aar': year,
             'farge': i,
             'varighet': varighet,
             'posisjon': defaultPos

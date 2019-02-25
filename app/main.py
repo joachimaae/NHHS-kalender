@@ -38,6 +38,15 @@ def weekswitch(year, weeknum, lang):
     else:
         return render_template("indexeng.html", eventer=events, ukenummer_dag=int(weeknum), aar=int(year), lang=lang, dates=dates)
 
+
+
+
+
+
+
+
+
+
 @app.route('/liste')
 def liste():
     """ Lister opp events
