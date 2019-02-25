@@ -8,3 +8,5 @@ cred.json
 *.cpython-37.pyc
 
 .vscode/settings.json
+
+.app/__pycache__

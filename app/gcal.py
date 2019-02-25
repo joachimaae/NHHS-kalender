@@ -138,6 +138,8 @@ def hent_events(lang):
 
         if timeConverter(startTid) < timeConverter('08:00'):
             startTid = '08:00'
+        if timeConverter(sluttTid) == timeConverter('08:00'):
+            sluttTid = '09:00'
                 
         varighet = (datetime.datetime.strptime(sluttTid, '%H:%M') - datetime.datetime.strptime(startTid, '%H:%M')).seconds/3600
 
