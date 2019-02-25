@@ -113,7 +113,7 @@ def get_url(service, lang):
 def hent_events(lang):
     global defaultPos
 
-    url = get_url('nu', lang)
+    url = get_url('nhhs', lang)
     ical_events = hent_ical(url)
 
     eventer = {}
