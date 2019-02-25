@@ -1,43 +1,11 @@
-# Requires: google-api-python-client, oauth2client
-
-from __future__ import print_function
-import httplib2
-import os
-
-from apiclient import discovery
-from oauth2client import client
-from oauth2client import tools
-from oauth2client.file import Storage
-import datetime
+import requests
+import icalendar
 import time
-import itertools
-
-try:
-    import argparse
-    flags = argparse.ArgumentParser(parents=[tools.argparser]).parse_args()
-except ImportError:
-    flags = None
-
-from google.oauth2 import service_account
-
-# If modifying these scopes, delete your previously saved credentials
-# at ~/.credentials/calendar-python-quickstart.json
-SCOPES = ['https://www.googleapis.com/auth/calendar.readonly']
-CLIENT_SECRET_FILE = 'cred.json'
-APPLICATION_NAME = 'Google Calendar API'
+import datetime
+import timeit
+import json
 
 defaultPos = 'center'
-
-def get_credentials():
-   
-    # Use service account if available
-    SERVICE_ACCOUNT_FILE="cred.json"
-    try:
-        credentials = service_account.Credentials.from_service_account_file(
-            SERVICE_ACCOUNT_FILE, scopes=SCOPES)
-        return credentials
-    except:
-        return
 
 ## Test for hvis to tidpunkt overlapper, Hjelpefunskjon til check_for_overlaps  
 def overlap(tid1, tid2, tid3):
@@ -92,7 +60,6 @@ def check_for_overlaps(liste):
         pos1 = liste[i[0]]['posisjon']
         pos2 = liste[i[1]]['posisjon']
 
-
         ## Finn start-slutt tid på event 1
         start_tid_1 = datetime.datetime.strptime(liste[i[0]]['start_tid'], '%H:%M')#.time()
         slutt_tid_1 = datetime.datetime.strptime(liste[i[0]]['slutt_tid'], '%H:%M')#.time()
@@ -100,7 +67,6 @@ def check_for_overlaps(liste):
         ## Finn start-slutt tid på event 2
         start_tid_2 = datetime.datetime.strptime(liste[i[1]]['start_tid'], '%H:%M')#.time()
         slutt_tid_2 = datetime.datetime.strptime(liste[i[1]]['slutt_tid'], '%H:%M')#.time()
-        
         
         ## Hvis 1 starter før 2
         if (start_tid_1 < start_tid_2):
@@ -129,77 +95,74 @@ def check_for_overlaps(liste):
     
     return liste
 
-       
-def hent_events(lang='no'):
-    """ Henter arrangementer og lagrer de i en dictionary "eventer"
-    -> dict of list of str
 
-    eventer har  som verdi en liste med arrangementets starttidspunkt, tittel og evt. beskrivelse.
-    """
+def hent_ical(url):
+    rawical = requests.get(url).text
+    cal = icalendar.Calendar().from_ical(rawical)
+    components = cal.walk()
+    components = filter(lambda c: c.name=='VEVENT', components)
+    #components = sorted(components, key=lambda c: c.get('dtstart').dt, reverse=False)
+    return components
+
+def get_url(service, lang):
+    with open('icals.json') as file:
+        data = json.load(file)
+
+    return data[service][lang]
+
+def hent_events(lang):
     global defaultPos
-    credentials = get_credentials()
-    #http = credentials.authorize(httplib2.Http())
-    #service = discovery.build('calendar', 'v3', http=http)
-    service = discovery.build('calendar', 'v3', credentials=credentials)
 
-    now = str(datetime.date.today() - datetime.timedelta(days=7)) + 'T00:00:0.0Z'
-    CalID = 'v612u1rohvpfau1fkgthola1dk@group.calendar.google.com' if lang=='no' else 'pfj36dednqcnd0rm55rqjdfrho@group.calendar.google.com'
-    eventsResult = service.events().list(
-        calendarId=CalID,
-        timeMin=now, maxResults=50, 
-        singleEvents=True,
-        orderBy='startTime').execute()
-    events = eventsResult.get('items', [])
-
-    
+    url = get_url('nu', lang)
+    ical_events = hent_ical(url)
 
     eventer = {}
+
     i = 1
-    for event in events:
-        #print("Ny event:")
-        #print(event)
-        if ('date' in event['start']):
-            date = event['start'].get('date')
-            event['start'] = {'dateTime': date + 'T07:00:00+01:00'}
-            event['end'] = {'dateTime': date + 'T23:59:00+01:00'}
+    for e in ical_events:
+        uid = str(e.get('UID'))
 
+        start = e.get('DTSTART').dt
+        slutt = e.get('DTEND').dt
 
-        start = event['start'].get('dateTime')[11:16]
-        slutt = event['end'].get('dateTime')[11:16]
-        varighet = datetime.datetime.strptime(event['end'].get('dateTime')[:-6], '%Y-%m-%dT%H:%M:%S') - datetime.datetime.strptime(event['start'].get('dateTime')[:-6], '%Y-%m-%dT%H:%M:%S')
-        varighet = varighet.seconds/3600
-        dato = event['start'].get('dateTime')[:10]
+        if(type(start) == datetime.datetime): ## Hvis det ikke er heldags
+            startTid = '{:d}:{:02d}'.format(start.hour, start.minute)
+            sluttTid = '{:d}:{:02d}'.format(slutt.hour, slutt.minute)
+        else:
+            startTid = '07:00' ## Hvis det er heldags
+            sluttTid = '23:00'
+        
+        varighet = (datetime.datetime.strptime(sluttTid, '%H:%M') - datetime.datetime.strptime(startTid, '%H:%M')).seconds/3600
+
+        dato = '{}-{:02d}-{:02d}'.format(start.year, start.month, start.day)
         ukedag = datetime.datetime.strptime(dato, "%Y-%m-%d").weekday()
         ukenummer = datetime.datetime.strptime(dato, "%Y-%m-%d").isocalendar()[1]
-        tittel = event['summary']
-        try:
-            description = event['description']
-        except:
-            description = "Ingen beskrivelse tilgjengelig"
-        event_id = event['id']
+
+        tittel = str(e.get('SUMMARY'))
+        beskrivelse = str(e.get('DESCRIPTION'))
 
         event_dict = {
-            'start_tid':start,
-            'slutt_tid': slutt,
-            'dato':dato,
+            'start_tid': startTid,
+            'slutt_tid': sluttTid,
+            'dato': dato,
             'tittel': tittel,
-            'beskrivelse':description,
-            'ukedag':ukedag,
-            'ukenummer':ukenummer,
-            'farge':i,
-            'varighet':varighet,
+            'beskrivelse': beskrivelse,
+            'ukedag': ukedag,
+            'ukenummer': ukenummer,
+            'farge': i,
+            'varighet': varighet,
             'posisjon': defaultPos
         }
 
+        eventer[uid] = event_dict
+       
         # Farger
         if i < 4:
             i += 1
         else: 
             i = 1
-            
-        eventer[event_id] = event_dict
     
-    eventer = check_for_overlaps(eventer)
+    eventer = check_for_overlaps(eventer) 
     return eventer
 
 
