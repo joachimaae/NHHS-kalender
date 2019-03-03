@@ -6,6 +6,20 @@
 
 @import '../partials/layout'; // responsive grid and media queries
 
+@charset "UTF-8";
+
+// Color
+@import "../components/color-variables";
+@import "../components/color-classes";
+
+// Variables;
+@import "../components/variables";
+
+@import "../components/normalize";
+@import "../components/global";
+@import "../components/navbar";
+@import "../components/typography";
+
 /* -------------------------------- 
 
 Primary style
