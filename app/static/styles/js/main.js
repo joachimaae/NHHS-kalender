@@ -117,16 +117,16 @@ jQuery(document).ready(function($){
 			//console.log('dette funker')
 			this.position = 'left'
 			event.parent('li').removeClass('left');
-			//console.log('venstre');
+			console.log('venstre');
 		} 
 		if (event.parent('li').hasClass('right')) {
 			this.position = 'right'
 			event.parent('li').removeClass('right');
-			//console.log('høyre');
+			console.log('høyre');
 		}
-		else {
+		if (event.parent('li').hasClass('center')){
 			this.position = 'center'
-			//console.log('midten');
+			console.log('midten');
 		}
 
 		
