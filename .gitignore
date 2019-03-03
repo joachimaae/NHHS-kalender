@@ -10,3 +10,5 @@ cred.json
 .vscode/settings.json
 
 .app/__pycache__
+
+.app/static/styles/scss/.sass-cache

@@ -6,22 +6,19 @@
 
 @import '../partials/layout'; // responsive grid and media queries
 
+@charset "UTF-8";
 
 // Color
-@import "./sass/components/color-variables";
-@import "./sass/components/color-classes";
+@import "../components/color-variables";
+@import "../components/color-classes";
 
 // Variables;
-@import "./sass/components/variables";
+@import "../components/variables";
 
-// Reset
-@import "./sass/components/normalize";
-
-// components
-@import "./sass/components/global";
-
-@import "./sass/components/navbar";
-@import "./sass/components/typography";
+@import "../components/normalize";
+@import "../components/global";
+@import "../components/navbar";
+@import "../components/typography";
 
 /* -------------------------------- 
 
