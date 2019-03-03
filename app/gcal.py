@@ -113,10 +113,10 @@ def get_url(service, lang):
 def timeConverter(tid):
     return datetime.datetime.strptime(tid, '%H:%M')#.time()
 
-def hent_events(lang):
+def hent_events(lang, cal):
     global defaultPos
 
-    url = get_url('nhhs', lang)
+    url = get_url(cal, lang)
     ical_events = hent_ical(url)
 
     eventer = {}
@@ -138,7 +138,7 @@ def hent_events(lang):
 
         if timeConverter(startTid) < timeConverter('08:00'):
             startTid = '08:00'
-        if timeConverter(sluttTid) == timeConverter('08:00'):
+        if timeConverter(sluttTid) <= timeConverter('08:00'):
             sluttTid = '09:00'
                 
         varighet = (datetime.datetime.strptime(sluttTid, '%H:%M') - datetime.datetime.strptime(startTid, '%H:%M')).seconds/3600
@@ -181,9 +181,6 @@ def hent_events(lang):
 if __name__ == "__main__":
     """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
     """
-    #eventer = hent_events()
-    #eventer = check_for_overlaps(eventer)
-    #print(hent_events())
 
     tidsanalyse = timeConverter('08:12')
     print(tidsanalyse)

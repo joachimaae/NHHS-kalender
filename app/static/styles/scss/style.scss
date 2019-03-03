@@ -6,6 +6,23 @@
 
 @import '../partials/layout'; // responsive grid and media queries
 
+
+// Color
+@import "./sass/components/color-variables";
+@import "./sass/components/color-classes";
+
+// Variables;
+@import "./sass/components/variables";
+
+// Reset
+@import "./sass/components/normalize";
+
+// components
+@import "./sass/components/global";
+
+@import "./sass/components/navbar";
+@import "./sass/components/typography";
+
 /* -------------------------------- 
 
 Primary style
