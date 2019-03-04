@@ -12,3 +12,5 @@ cred.json
 .app/__pycache__
 
 .app/static/styles/scss/.sass-cache
+
+.sass-cache
