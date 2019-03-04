@@ -13,15 +13,36 @@
 </head>
 <body>
 
-<h1 style="text-align:center;font-size: 3em;padding:0.5em;">Calendar for NHHS</h1> 
+<!--<h1 style="text-align:center;font-size: 3em;padding:0.5em;">Calendar for NHHS</h1> 
 <h2 style="text-align:center;">Week: {{ ukenummer_dag }}</h2> 
+-->
+<div class="nhhs-banner">
+	<nav>
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo center ">NHHS-Calendar</a>
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+			<li class = "active"><a href ="#">NU</a></li>
+			<li><a href="#">NHHS</a></li>
+			
+			</ul>
+		</div>
+	</nav>
+</div>
 
+
+<div class="weekswitch">
+	<a href="/{{ lang }}/{{cal}}/{{aar if ukenummer_dag!=1 else aar-1}}/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
+	<a href="/{{ lang }}/{{ cal }}/"> Week: {{ ukenummer_dag }}</a>
+	<a href="/{{ lang }}/{{cal}}/{{aar if ukenummer_dag!=52 else aar+1}}/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
+</div>
+
+<!--
 <div class="weekswitch">
 	<a href="/en/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
 	<a href="/en/">Today</a>
 	<a href="/en/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
 </div>
-
+-->
 <div class="cd-schedule loading">
 	<div class="timeline">
 		<ul>
@@ -51,7 +72,7 @@
 				<div class="top-info"><span>Monday {{dates[0]}}</span></div>
 
 				<ul>
-					{% for key, value in eventer.items() if value['ukedag'] == 0 and value['ukenummer']==ukenummer_dag %}
+					{% for key, value in eventer.items() if value['ukedag'] == 0 and value['ukenummer']==ukenummer_dag and value['aar'] == aar %}
 					<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 						<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 							<em class="event-name">{{ value['tittel'] }}</em>
@@ -64,7 +85,7 @@
 			<li class="events-group">
 				<div class="top-info"><span>Tuesday {{dates[1]}}</span></div>	
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 1 and value['ukenummer']==ukenummer_dag %}
+						{% for key, value in eventer.items() if value['ukedag'] == 1 and value['ukenummer']==ukenummer_dag and value['aar'] == aar %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -76,7 +97,7 @@
 			<li class="events-group">
 				<div class="top-info"><span>Wednesday {{dates[2]}}</span></div>
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 2 and value['ukenummer']==ukenummer_dag %}
+						{% for key, value in eventer.items() if value['ukedag'] == 2 and value['ukenummer']==ukenummer_dag and value['aar'] == aar %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -89,7 +110,7 @@
 					<div class="top-info"><span>Thursday {{dates[3]}}</span></div>
 
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 3 and value['ukenummer']==ukenummer_dag %}
+						{% for key, value in eventer.items() if value['ukedag'] == 3 and value['ukenummer']==ukenummer_dag and value['aar'] == aar %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -102,7 +123,7 @@
 					<div class="top-info"><span>Friday {{dates[4]}}</span></div>
 
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 4 and value['ukenummer']==ukenummer_dag %}
+						{% for key, value in eventer.items() if value['ukedag'] == 4 and value['ukenummer']==ukenummer_dag and value['aar'] == aar %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -114,7 +135,7 @@
 			<li class="events-group">
 					<div class="top-info"><span>Saturday {{dates[5]}}</span></div>
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 5 and value['ukenummer']==ukenummer_dag %}
+						{% for key, value in eventer.items() if value['ukedag'] == 5 and value['ukenummer']==ukenummer_dag and value['aar'] == aar %}
 						<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 							<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 								<em class="event-name">{{ value['tittel'] }}</em>
@@ -126,7 +147,7 @@
 			<li class="events-group">
 				<div class="top-info"><span>Sunday {{dates[6]}}</span></div>
 					<ul>
-						{% for key, value in eventer.items() if value['ukedag'] == 6 and value['ukenummer']==ukenummer_dag %}
+						{% for key, value in eventer.items() if value['ukedag'] == 6 and value['ukenummer']==ukenummer_dag and value['aar'] == aar %}
 							<li class="single-event" data-start= "{{ value['start_tid'] }}" data-end="{{ value['slutt_tid'] }}" data-content="{{ value['beskrivelse'] }}" data-event="event-{{ value['farge'] }}">
 								<a href="#0" {{'class=mindre' if value['varighet'] <= 1.5 }}>
 									<em class="event-name">{{ value['tittel'] }}</em>

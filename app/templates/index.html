@@ -34,6 +34,7 @@
 
 <div class="nhhs-banner">
 	<nav>
+<<<<<<< HEAD
 		<div class="nav-wrapper cntrtxt">
 			<a href="#" class = "brand-logo center">NHHS-Kalender</a>
 			<img id="logo" src ="static/img/nhh_logo_rz.png">
@@ -41,20 +42,27 @@
 			<li class = "active"><a href ="#">NU</a></li>
 			<li><a href="#">NHHS</a></li>
 			
+=======
+		<div class="nav-wrapper">
+			<a href="#" class="brand-logo center">NHHS-Kalender</a>
+			<ul id="nav-mobile" class="left hide-on-med-and-down">
+			<li {{ 'class=active' if cal == 'nu' }}><a href ="/{{ lang }}/nu/{{ aar }}/{{ ukenummer_dag }}">NU</a></li>
+			<li {{ 'class=active' if cal == 'nhhs' }}><a href="/{{ lang }}/nhhs/{{ aar }}/{{ ukenummer_dag }}">NHHS</a></li>
+>>>>>>> 9583138deb69d3b0b34036dfc60780d654c04b7f
 			</ul>
 		</div>
 	</nav>
 </div>
 
 
-<h2 style="text-align:center;">Uke: {{ ukenummer_dag }}</h2> 
+<!--<h2 style="text-align:center;">Uke: {{ ukenummer_dag }}</h2> -->
 
 <a href="http://www.nu.nhhs.no/ical"><button class="btn-small right">Abonnér</button></a>
 
 <div class="weekswitch">
-  <a href="/no/{{cal}}/{{aar if ukenummer_dag!=1 else aar-1}}/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
-  <a href="/no/">I dag</a>
-  <a href="/no/{{cal}}/{{aar if ukenummer_dag!=52 else aar+1}}/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
+  <a href="/{{ lang }}/{{cal}}/{{aar if ukenummer_dag!=1 else aar-1}}/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
+  <a href="/{{ lang }}/{{ cal }}/"> Uke: {{ ukenummer_dag }}</a>
+  <a href="/{{ lang }}/{{cal}}/{{aar if ukenummer_dag!=52 else aar+1}}/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
 </div>
 
 

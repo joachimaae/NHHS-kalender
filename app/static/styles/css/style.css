@@ -2406,7 +2406,7 @@ Main Components
             .cd-schedule .events .single-event.right a .event-name {
               font-size: 0.7em; }
         .cd-schedule .events .single-event a {
-          padding: 1.2em; }
+          padding: 0.3em; }
           .cd-schedule .events .single-event a.mindre {
             padding: 0.3em; }
         .cd-schedule .events .single-event:last-of-type {
