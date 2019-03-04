@@ -5,12 +5,23 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600" rel="stylesheet">
-	<link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-	<link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles/css/reset.css') }}"> <!-- CSS reset -->
+	<link rel="stylesheet" href="{{ url_for('static',filename='styles/css/style.css') }}"> <!-- Resource style -->
   	
 	<title>Liste av events</title>
 </head>
 <body>
+
+		<nav>
+			<div class="nav-wrapper">
+				<a href="#" class="brand-logo center">NHHS-Kalender</a>
+				<ul id="nav-mobile" class="left hide-on-med-and-down">
+				<li class="active"><a href="sass.html">Sass</a></li>
+				<li><a href="badges.html">Components</a></li>
+				<li><a href="collapsible.html">JavaScript</a></li>
+				</ul>
+			</div>
+		</nav>
 
 <h1> Eventer: </h1>
 

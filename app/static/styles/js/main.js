@@ -114,19 +114,15 @@ jQuery(document).ready(function($){
 
 		// Finn ut om denne er sidestilt eller ikke
 		if (event.parent('li').hasClass('left')) {
-			//console.log('dette funker')
 			this.position = 'left'
 			event.parent('li').removeClass('left');
-			console.log('venstre');
 		} 
 		if (event.parent('li').hasClass('right')) {
 			this.position = 'right'
 			event.parent('li').removeClass('right');
-			console.log('høyre');
 		}
 		if (event.parent('li').hasClass('center')){
 			this.position = 'center'
-			console.log('midten');
 		}
 
 		
