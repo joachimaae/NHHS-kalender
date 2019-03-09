@@ -14,10 +14,11 @@
 	<title>NHHS Kalender</title>
 </head>
 <body>
-<style>
+
+<!--<style>
 	#logo{
 		margin-top:7px;
-		margin-right:10px;
+		margin-right:20px;
 		height: 50px;
 		float:right;
 
@@ -30,7 +31,8 @@
 	.cntrtxt{
 		text-align: center;
 	}
-	</style>
+	</style> 
+	--->
 
 <div class="nhhs-banner">
 	<nav>
@@ -49,12 +51,15 @@
 
 <!--<h2 style="text-align:center;">Uke: {{ ukenummer_dag }}</h2> -->
 
-<a href="http://www.nu.nhhs.no/ical"><button class="btn-small right">Abonnér</button></a>
-
+<div class="div1">
 <div class="weekswitch">
   <a href="/{{ lang }}/{{cal}}/{{aar if ukenummer_dag!=1 else aar-1}}/{{ ukenummer_dag - 1 if ukenummer_dag!=1 else 52 }}">❮</a>
   <a href="/{{ lang }}/{{ cal }}/"> Uke: {{ ukenummer_dag }}</a>
   <a href="/{{ lang }}/{{cal}}/{{aar if ukenummer_dag!=52 else aar+1}}/{{ ukenummer_dag + 1 if ukenummer_dag!=52 else 1 }}">❯</a>
+</div>
+<div>
+	<a href="http://www.nu.nhhs.no/ical"><button class="btn-small right">Abonnér</button></a>
+</div>
 </div>
 
 
