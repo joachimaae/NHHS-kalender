@@ -6,6 +6,7 @@
 
 @import '../partials/layout'; // responsive grid and media queries
 
+
 @charset "UTF-8";
 
 
@@ -17,15 +18,49 @@
 	// Variables;
 	@import "../components/variables";
 
+
 	@import "../components/normalize";
 	@import "../components/global";
 	@import "../components/navbar";
 	@import "../components/typography";
 
+
+
 	padding-bottom: 30px;
+
+	  /*------------------------------
+  Logo
+
+  --------------------------------*/
+  #logo{
+	margin-top:7px;
+	margin-right:20px;
+	height: 50px;
+	float:right;
+
+	@media #{$medium-and-down}{
+		margin-top:7px;
+		margin-right:10px;
+		height: 40px;
+		float:right;
+	}
+}
 	
 }
 .div1 .btn-small {
+		// Color
+		@import "../components/color-variables";
+		@import "../components/color-classes";
+	
+		// Variables;
+		@import "../components/variables";
+	
+		@import "../components/normalize";
+		@import "../components/global";
+		@import "../components/navbar";
+		@import "../components/typography";
+
+
 	height: 30px;
 	width: -10px;
 	background: #0b5b95;
@@ -36,19 +71,25 @@
 	border-radius: 5px;
 	margin-top: -33px;
 	float: right;
-	margin-right:18px
+	margin-right:18px;
+
+	@media #{$medium-and-down}{
+		height: 15px;
+		width: -10px;
+		background: #0b5b95;
+		border:0;
+		padding-left: 3px;
+		padding-right: 3px;
+		padding-bottom:15px;
+		color: #ffffff;
+		border-radius: 5px;
+		margin-top: -40px;
+		float: right;
+		margin-right:10px;
+	}
   }
 
-  /*------------------------------
-  Logo
 
-  --------------------------------*/
-#logo{
-	margin-top:7px;
-	margin-right:20px;
-	height: 50px;
-	float:right;
-}
 
 .right{
 	float:right;
