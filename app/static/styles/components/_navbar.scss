@@ -73,6 +73,7 @@ nav {
     @media #{$medium-and-down} {
       left: 50%;
       transform: translateX(-50%);
+      font-size: 2rem;
 
       &.left, &.right {
         padding: 0;
@@ -128,6 +129,10 @@ nav {
       display: block;
       padding: 0 15px;
       cursor: pointer;
+
+      @media #{$medium-and-down}{
+        font-size: 1rem;
+      }
 
       &.btn, &.btn-large, &.btn-flat, &.btn-floating {
         margin-top: -2px;
