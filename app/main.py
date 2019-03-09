@@ -27,6 +27,7 @@ def get_dates(year, week):
     return datelist
 
 
+
 @app.route('/', defaults={'lang': 'no', 'cal': 'nhhs', 'year':datetime.datetime.now().isocalendar()[0], 'weeknum':datetime.datetime.now().isocalendar()[1]})
 @app.route('/<lang>/<cal>/', defaults={'year':datetime.datetime.now().isocalendar()[0], 'weeknum':datetime.datetime.now().isocalendar()[1]})
 @app.route('/<lang>/<cal>/<year>/<weeknum>')
@@ -35,10 +36,14 @@ def weekswitch(year, weeknum, lang, cal):
     events = gcal.hent_events(lang, cal)
     dates = get_dates(int(year), int(weeknum))
 
+    link = gcal.get_url(cal, lang)
+    link = link[link.index('/'):]
+    link = 'webcal:' + link 
+
     if(lang == 'no'):
-        return render_template("index.html", eventer=events, ukenummer_dag=int(weeknum), aar=int(year), lang=lang, dates=dates, cal=cal)
+        return render_template("index.html", eventer=events, ukenummer_dag=int(weeknum), aar=int(year), lang=lang, dates=dates, cal=cal, link=link)
     else:
-        return render_template("indexeng.html", eventer=events, ukenummer_dag=int(weeknum), aar=int(year), lang=lang, dates=dates, cal=cal)
+        return render_template("indexeng.html", eventer=events, ukenummer_dag=int(weeknum), aar=int(year), lang=lang, dates=dates, cal=cal, link=link)
 
 
 

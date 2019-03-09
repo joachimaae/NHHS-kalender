@@ -182,6 +182,10 @@ if __name__ == "__main__":
     """ Denne brukes for å teste programmet. Dette kjøres når man kjører gcal.py i terminal
     """
 
-    tidsanalyse = timeConverter('08:12')
-    print(tidsanalyse)
+
+
+    link = get_url('nhhs', 'no')
+    link = link[link.index('/'):]
+    link = 'webcal:' + link 
+    print(link)
 
