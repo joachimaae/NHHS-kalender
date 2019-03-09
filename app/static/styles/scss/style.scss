@@ -8,6 +8,7 @@
 
 @charset "UTF-8";
 
+
 .nhhs-banner {
 	// Color
 	@import "../components/color-variables";
@@ -21,7 +22,44 @@
 	@import "../components/navbar";
 	@import "../components/typography";
 
+<<<<<<< HEAD
 	
+=======
+	padding-bottom: 30px;
+	
+}
+.div1 .btn-small {
+	height: 30px;
+	width: -10px;
+	background: #0b5b95;
+	border:0;
+	padding-left: 15px;
+	padding-right: 15px;
+	color: #ffffff;
+	border-radius: 5px;
+	margin-top: -33px;
+	float: right;
+	margin-right:18px
+  }
+
+  /*------------------------------
+  Logo
+
+  --------------------------------*/
+#logo{
+	margin-top:7px;
+	margin-right:20px;
+	height: 50px;
+	float:right;
+}
+
+.right{
+	float:right;
+	margin-right:10px;
+}
+.cntrtxt{
+	text-align: center;
+>>>>>>> 9f6191e32b32b06d82369e82b6f697a5acd1ca44
 }
 
 
@@ -46,6 +84,7 @@ body {
 	}
 	color: $text-color;
 	background-color: $bg-color;
+
 
 
 
