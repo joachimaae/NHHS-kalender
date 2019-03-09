@@ -35,12 +35,11 @@
 <div class="nhhs-banner">
 	<nav>
 		<div class="nav-wrapper cntrtxt">
-			<a href="#" class = "brand-logo center">NHHS-Kalender</a>
-			<img id="logo" src ="static/img/nhh_logo_rz.png">
+			<a class = "brand-logo center">NHHS-Kalender</a>
+			<img id="logo" src ="{{ url_for('static',filename='img/nhh_logo_rz.png') }}">
 			<ul id="nav-mobile" class="left">
-			<li class = "active"><a href ="#">NU</a></li>
-			<li><a href="#">NHHS</a></li>
-			
+			<li {{ 'class=active' if cal == 'nhhs' }}><a href="/{{ lang }}/nhhs/{{ aar }}/{{ ukenummer_dag}}">NHHS</a></li>
+			<li {{ 'class=active' if cal == 'nu' }}><a href ="/{{ lang }}/nu/{{ aar }}/{{ ukenummer_dag}}">NU</a></li>
 			</ul>
 		</div>
 	</nav>
