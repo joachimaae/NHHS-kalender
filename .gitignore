@@ -7,10 +7,10 @@ cred.json
 *.cpython-36.pyc
 *.cpython-37.pyc
 
-.vscode/settings.json
+.vscode/
 
-.app/__pycache__
+.app/__pycache__/
 
 .app/static/styles/scss/.sass-cache
 
-.sass-cache
+.sass-cache/
