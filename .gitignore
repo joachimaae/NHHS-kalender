@@ -14,3 +14,4 @@ cred.json
 .app/static/styles/scss/.sass-cache
 
 .sass-cache/
+.vscode/settings.json
