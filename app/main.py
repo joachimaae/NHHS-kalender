@@ -28,11 +28,18 @@ def get_dates(year, week):
 
 
 
-@app.route('/', defaults={'lang': 'no', 'cal': 'nhhs', 'year':datetime.datetime.now().isocalendar()[0], 'weeknum':datetime.datetime.now().isocalendar()[1]})
-@app.route('/<lang>/<cal>/', defaults={'year':datetime.datetime.now().isocalendar()[0], 'weeknum':datetime.datetime.now().isocalendar()[1]})
+#@app.route('/', defaults={'lang': 'no', 'cal': 'nhhs', 'year':datetime.datetime.now().isocalendar()[0], 'weeknum':datetime.datetime.now().isocalendar()[1]})
+@app.route('/', defaults={'lang': 'no', 'cal': 'nhhs', 'year':0, 'weeknum':0})
+#@app.route('/<lang>/<cal>/', defaults={'year':datetime.datetime.now().isocalendar()[0], 'weeknum':datetime.datetime.now().isocalendar()[1]})
+@app.route('/<lang>/<cal>/', defaults={'year':0, 'weeknum':0})
 @app.route('/<lang>/<cal>/<year>/<weeknum>')
 
 def weekswitch(year, weeknum, lang, cal):
+    if (weeknum == 0 and year == 0):
+        weeknum = datetime.datetime.now().isocalendar()[1]
+        year = datetime.datetime.now().isocalendar()[0]
+    
+
     events = gcal.hent_events(lang, cal)
     dates = get_dates(int(year), int(weeknum))
 
